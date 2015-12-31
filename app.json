@@ -1,0 +1,10 @@
+{
+  "name": "Mr. Rebase",
+  "description": "A bot that rebases PRs",
+  "repository": "https://github.com/wojtekmach/mr-rebase",
+  "buildpacks": [
+    {"url": "https://github.com/HashNuke/heroku-buildpack-elixir"},
+    {"url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static"}
+  ],
+  "keywords": ["elixir", "phoenix"]
+}

@@ -19,6 +19,13 @@ defmodule MrRebase.Router do
     get "/", PageController, :index
   end
 
+  scope "/auth", MrRebase do
+    pipe_through :browser
+
+    get "/", AuthController, :index
+    get "/callback", AuthController, :callback
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", MrRebase do
   #   pipe_through :api

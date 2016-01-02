@@ -3,6 +3,11 @@ defmodule MrRebase.PageController do
 
   def index(conn, _params) do
     access_token = get_session(conn, :access_token)
-    render conn, "index.html", %{access_token: access_token}
+
+    if access_token do
+      repositories = Tentacat.Repositories.list_users("wojtekmach")
+    end
+
+    render conn, "index.html", %{access_token: access_token, repositories: repositories}
   end
 end

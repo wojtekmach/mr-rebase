@@ -38,7 +38,8 @@ defmodule MrRebase.Mixfile do
      {:gettext, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:oauth2, "~> 0.5"},
-     {:tentacat, "~> 0.2"}]
+     {:tentacat, "~> 0.2"},
+     {:secure_random, "~> 0.2"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

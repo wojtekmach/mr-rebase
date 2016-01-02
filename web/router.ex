@@ -17,6 +17,8 @@ defmodule MrRebase.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/repos/:user/:repo", PageController, :repo
+    post "/repos/:user/:repo/:ref/rebase", PageController, :rebase
   end
 
   scope "/auth", MrRebase do

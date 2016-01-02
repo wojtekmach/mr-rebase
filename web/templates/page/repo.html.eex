@@ -1,0 +1,13 @@
+<dl>
+  <dt>Repository<dt><dd><%= link "#{@org}/#{@repo}", to: "https://github.com/#{@org}/#{@repo}" %></dd>
+</dl>
+
+<h3>Open pull requests</h3>
+<ul>
+  <%= for pr <- @prs do %>
+    <li>
+      <%= link pr["title"], to: pr["html_url"] %>
+      <%= link "Rebase", to: page_url(@conn, :rebase, @org, @repo, pr["head"]["ref"]), method: :post, class: "btn btn-default" %>
+    </li>
+  <% end %>
+</ul>

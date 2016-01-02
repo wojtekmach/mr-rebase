@@ -32,7 +32,7 @@ defmodule MrRebase.Endpoint do
 
   plug Plug.Session,
     store: :cookie,
-    key: "_mr_rebase_key_v1",
+    key: "_mr_rebase_key",
     signing_salt: "bXknU5FZ"
 
   plug MrRebase.Router

@@ -7,7 +7,7 @@
   <h3>Repositories</h3>
   <ul>
     <%= for repo <- @repositories do %>
-      <li><%= repo["name"] %> -- <%= repo["html_url"] %></li>
+      <li><%= link repo["name"], to: page_path(@conn, :repo, @user.login, repo["name"]) %></li>
     <% end %>
   </ul>
 

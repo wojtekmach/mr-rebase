@@ -1,5 +1,7 @@
 <%= if @access_token do %>
   Token: <code><%= @access_token %></code>
+
+  <p><%= link "Logout", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %></p>
 <% else %>
   <p><a href="<%= auth_path @conn, :index %>">Connect to GitHub</a></p>
 <% end %>

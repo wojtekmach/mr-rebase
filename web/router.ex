@@ -23,6 +23,7 @@ defmodule MrRebase.Router do
     pipe_through :browser
 
     get "/", AuthController, :index
+    delete "/", AuthController, :delete
     get "/callback", AuthController, :callback
   end
 

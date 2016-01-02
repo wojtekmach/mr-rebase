@@ -5,6 +5,13 @@ defmodule MrRebase.AuthController do
     redirect conn, external: GitHub.authorize_url!(scope: "public_repo")
   end
 
+  def delete(conn, _params) do
+    conn
+    |> put_flash(:info, "You have been logged out!")
+    |> configure_session(drop: true)
+    |> redirect(to: "/")
+  end
+
   def callback(conn, %{"code" => code}) do
     token = GitHub.get_token!(code: code)
 

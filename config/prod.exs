@@ -24,7 +24,7 @@ config :mr_rebase, MrRebase.Repo,
   pool_size: 20
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :debug
 
 # ## SSL Support
 #

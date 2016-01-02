@@ -29,6 +29,6 @@ config :phoenix, :generators,
   binary_id: false
 
 config :mr_rebase, GitHub,
-  client_id: System.get_env("GITHUB_CLIENT_ID"),
-  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
-  redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
+  client_id: System.get_env("GITHUB_CLIENT_ID") || raise("ENV variable not set: GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET") || raise("ENV variable not set: GITHUB_CLIENT_SECRET"),
+  redirect_uri: System.get_env("GITHUB_REDIRECT_URI") || raise("ENV variable not set: GITHUB_REDIRECT_URI")

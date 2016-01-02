@@ -16,7 +16,7 @@ config :mr_rebase, MrRebase.Endpoint,
   url: [scheme: "https", host: "mr-rebase.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE") || raise("ENV variable not set: SECRET_KEY_BASE")
 
 config :mr_rebase, MrRebase.Repo,
   adapter: Ecto.Adapters.Postgres,

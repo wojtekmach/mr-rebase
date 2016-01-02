@@ -14,9 +14,16 @@ defmodule MrRebase.AuthController do
 
   def callback(conn, %{"code" => code}) do
     token = GitHub.get_token!(code: code)
+    user = get_user(token)
 
     conn
     |> put_session(:access_token, token.access_token)
+    |> put_session(:user, user)
     |> redirect(to: "/")
+  end
+
+  defp get_user(token) do
+    {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/user")
+    %{name: user["name"], login: user["login"], avatar_url: user["avatar_url"]}
   end
 end

@@ -1,5 +1,8 @@
 <%= if @access_token do %>
-  Token: <code><%= @access_token %></code>
+  <dl>
+    <dt>User:</dt><dd><%= link @user.login, to: "https://github.com/#{@user.login}" %></dd>
+    <dt>Token:</dt><dd><code><%= @access_token %></code></dd>
+  </dl>
 
   <h3>Repositories</h3>
   <ul>

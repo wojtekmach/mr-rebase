@@ -6,7 +6,8 @@ defmodule MrRebase.PageController do
     user = get_session(conn, :user)
 
     if access_token do
-      repositories = Tentacat.Repositories.list_users(user.login)
+      client = Tentacat.Client.new(%{access_token: access_token})
+      repositories = repositories_for_login(client, user.login)
     end
 
     render conn, "index.html", %{access_token: access_token, repositories: repositories, user: user}
@@ -28,5 +29,9 @@ defmodule MrRebase.PageController do
     conn
     |> put_flash(:info, "PR was successfully rebased!")
     |> redirect(to: "/repos/#{org}/#{repo}")
+  end
+
+  def repositories_for_login(client, login) do
+    Tentacat.get("users/#{login}/repos", client, %{per_page: 100})
   end
 end

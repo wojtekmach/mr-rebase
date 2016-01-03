@@ -28,7 +28,7 @@ config :phoenix, :generators,
   migration: true,
   binary_id: false
 
-config :mr_rebase, GitHub,
+config :mr_rebase, GitHubAuth,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
   redirect_uri: System.get_env("GITHUB_REDIRECT_URI")

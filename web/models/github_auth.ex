@@ -1,6 +1,6 @@
 # https://github.com/scrogson/oauth2_example/blob/214f84aa690dbdc640613a8673c90c79d8f5767a/web/oauth/github.ex
 
-defmodule GitHub do
+defmodule GitHubAuth do
   @moduledoc """
   An OAuth2 strategy for GitHub.
   """
@@ -9,7 +9,7 @@ defmodule GitHub do
   alias OAuth2.Strategy.AuthCode
 
   defp config do
-    [strategy: GitHub,
+    [strategy: GitHubAuth,
      site: "https://api.github.com",
      authorize_url: "https://github.com/login/oauth/authorize",
      token_url: "https://github.com/login/oauth/access_token"]
@@ -18,7 +18,7 @@ defmodule GitHub do
   # Public API
 
   def client do
-    Application.get_env(:mr_rebase, GitHub)
+    Application.get_env(:mr_rebase, GitHubAuth)
     |> Keyword.merge(config())
     |> OAuth2.Client.new()
   end

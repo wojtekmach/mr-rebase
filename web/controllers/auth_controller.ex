@@ -2,7 +2,7 @@ defmodule MrRebase.AuthController do
   use MrRebase.Web, :controller
 
   def index(conn, _params) do
-    redirect conn, external: GitHub.authorize_url!(scope: "public_repo")
+    redirect conn, external: GitHubAuth.authorize_url!(scope: "public_repo")
   end
 
   def delete(conn, _params) do
@@ -13,7 +13,7 @@ defmodule MrRebase.AuthController do
   end
 
   def callback(conn, %{"code" => code}) do
-    token = GitHub.get_token!(code: code)
+    token = GitHubAuth.get_token!(code: code)
     user = get_user(token)
 
     conn

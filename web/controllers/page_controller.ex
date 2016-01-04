@@ -32,6 +32,10 @@ defmodule MrRebase.PageController do
     |> redirect(to: "/repos/#{org}/#{repo}")
   end
 
+  def error(conn, _params) do
+    raise "foo"
+  end
+
   defp repositories_for_login(client, login) do
     Tentacat.get("users/#{login}/repos", client, %{per_page: 100})
   end

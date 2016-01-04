@@ -20,6 +20,7 @@ defmodule MrRebase.Router do
     get "/", PageController, :index
     get "/repos/:user/:repo", PageController, :repo
     post "/repos/:user/:repo/:ref/rebase", PageController, :rebase
+    get "/error", PageController, :error
   end
 
   scope "/auth", MrRebase do

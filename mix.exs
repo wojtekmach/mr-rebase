@@ -18,7 +18,7 @@ defmodule MrRebase.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {MrRebase, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
+     applications: [:phoenix, :phoenix_html, :cowboy, :honeybadger, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :oauth2, :tentacat]]
   end
 

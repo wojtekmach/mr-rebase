@@ -1,5 +1,6 @@
 defmodule MrRebase.Router do
   use MrRebase.Web, :router
+  use Honeybadger.Plug
 
   pipeline :browser do
     plug :accepts, ["html"]

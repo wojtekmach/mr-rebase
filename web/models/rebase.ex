@@ -1,6 +1,6 @@
 defmodule Rebase do
-  def call(token, org, repo, branch) do
-    url = "https://#{token}@github.com/#{org}/#{repo}"
+  def call(client, org, repo, branch) do
+    url = "https://#{client.auth.access_token}@github.com/#{org}/#{repo}"
 
     with_tmpdir!(fn _dirname ->
       IO.puts "Cloning..."

@@ -7,6 +7,6 @@ defmodule RebaseTest do
     repo = System.get_env("TEST_REPO") || raise("TEST_REPO missing")
     ref = System.get_env("TEST_REF") || raise("TEST_REF missing")
 
-    Rebase.call(token, org, repo, ref)
+    Rebase.call(GitHub.client(token), org, repo, ref)
   end
 end

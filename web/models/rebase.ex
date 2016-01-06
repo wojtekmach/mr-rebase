@@ -4,8 +4,12 @@ defmodule Rebase do
 
     with_tmpdir!(fn _dirname ->
       IO.inspect System.cmd("git", ["clone", url, "."])
+      IO.inspect "On master branch"
+      IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
       IO.inspect System.cmd("git", ["fetch", "origin", branch])
       IO.inspect System.cmd("git", ["checkout", branch])
+      IO.inspect "On #{branch} branch"
+      IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
       IO.inspect System.cmd("git", ["rebase", "master"])
       IO.inspect System.cmd("git", ["push", "-f", "origin", branch])
     end)

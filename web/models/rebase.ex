@@ -7,6 +7,10 @@ defmodule Rebase do
       IO.inspect System.cmd("git", ["clone", url, "."])
 
       :timer.sleep(1000)
+      IO.inspect System.cmd("git", ["config", "user.email", "mr-rebase@wojtekmach.pl"])
+      IO.inspect System.cmd("git", ["config", "user.name", "Mr. Rebase"])
+
+      :timer.sleep(1000)
       IO.inspect "On master branch"
       IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
 

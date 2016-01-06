@@ -1,3 +1,0 @@
-- [ ] Install webhook on the repo (https://developer.github.com/v3/repos/hooks/#create-a-hook)
-- [ ] Add real tests
-- [ ] Break up PageController into smaller controllers

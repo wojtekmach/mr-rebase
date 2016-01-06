@@ -22,6 +22,9 @@ defmodule Rebase do
       IO.inspect System.cmd("git", ["rebase", "master"])
 
       :timer.sleep(1000)
+      IO.inspect System.cmd("git", ["log", "--oneline"])
+
+      :timer.sleep(1000)
       IO.puts "Pushing..."
       IO.inspect System.cmd("git", ["push", "-f", "origin", branch])
     end)

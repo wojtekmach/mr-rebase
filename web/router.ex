@@ -30,8 +30,9 @@ defmodule MrRebase.Router do
     get "/callback", AuthController, :callback
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", MrRebase do
-  #   pipe_through :api
-  # end
+  scope "/github", MrRebase do
+    pipe_through :api
+
+    post "/callback", GitHubController, :callback
+  end
 end

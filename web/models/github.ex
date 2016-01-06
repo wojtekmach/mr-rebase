@@ -1,5 +1,5 @@
 defmodule GitHub do
-  def client(access_token) when is_binary(access_token) do
+  def client(access_token) do
     Tentacat.Client.new(%{access_token: access_token})
   end
 

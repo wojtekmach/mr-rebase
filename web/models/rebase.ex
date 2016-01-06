@@ -3,14 +3,22 @@ defmodule Rebase do
     url = "https://#{token}@github.com/#{org}/#{repo}"
 
     with_tmpdir!(fn _dirname ->
+      IO.puts "Cloning..."
       IO.inspect System.cmd("git", ["clone", url, "."])
+
       IO.inspect "On master branch"
       IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
+
+      IO.puts "Switching branch..."
       IO.inspect System.cmd("git", ["fetch", "origin", branch])
       IO.inspect System.cmd("git", ["checkout", branch])
       IO.inspect "On #{branch} branch"
       IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
+
+      IO.puts "Rebasing..."
       IO.inspect System.cmd("git", ["rebase", "master"])
+
+      IO.puts "Pushing..."
       IO.inspect System.cmd("git", ["push", "-f", "origin", branch])
     end)
   end

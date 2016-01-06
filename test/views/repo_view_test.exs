@@ -1,3 +1,3 @@
-defmodule MrRebase.PageViewTest do
+defmodule MrRebase.RepoViewTest do
   use MrRebase.ConnCase, async: true
 end

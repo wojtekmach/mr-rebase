@@ -1,4 +1,4 @@
-defmodule MrRebase.PageController do
+defmodule MrRebase.RepoController do
   use MrRebase.Web, :controller
 
   def index(conn, _params) do
@@ -12,10 +12,10 @@ defmodule MrRebase.PageController do
     render conn, "index.html", %{access_token: access_token, repositories: repositories, user: user}
   end
 
-  def repo(conn, %{"user" => org, "repo" => repo}) do
+  def show(conn, %{"user" => org, "repo" => repo}) do
     prs = github_client(conn) |> GitHub.pull_requests(org, repo)
 
-    render conn, "repo.html", %{org: org, repo: repo, prs: prs}
+    render conn, "show.html", %{org: org, repo: repo, prs: prs}
   end
 
   def rebase(conn, %{"user" => org, "repo" => repo, "ref" => ref}) do

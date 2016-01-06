@@ -15,11 +15,11 @@ defmodule MrRebase.Router do
   end
 
   scope "/", MrRebase do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
-    get "/repos/:user/:repo", PageController, :repo
-    post "/repos/:user/:repo/:ref/rebase", PageController, :rebase
+    get "/", RepoController, :index
+    get "/repos/:user/:repo", RepoController, :show
+    post "/repos/:user/:repo/:ref/rebase", RepoController, :rebase
   end
 
   scope "/auth", MrRebase do

@@ -1,4 +1,0 @@
-rm -rf node_modules
-npm install
-brunch build --production
-mix phoenix.digest

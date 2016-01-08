@@ -10,7 +10,7 @@ defmodule MrRebase.GitHubController do
 
     GitHub.pull_requests(client, org, repo)
     |> Enum.each(fn pr ->
-      Rebase.call(token, org, repo, pr["head"]["ref"])
+      Rebase.call(client, org, repo, pr["head"]["ref"])
     end)
 
     conn

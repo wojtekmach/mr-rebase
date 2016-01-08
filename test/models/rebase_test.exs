@@ -3,9 +3,9 @@ defmodule RebaseTest do
 
   test "works" do
     token = System.get_env("TEST_TOKEN") || raise("TEST_TOKEN missing")
-    org = System.get_env("TEST_ORG") || raise("TEST_ORG missing")
-    repo = System.get_env("TEST_REPO") || raise("TEST_REPO missing")
-    ref = System.get_env("TEST_REF") || raise("TEST_REF missing")
+    org = System.get_env("TEST_ORG") || "wojtekmach"
+    repo = System.get_env("TEST_REPO") || "mr-rebase-test"
+    ref = System.get_env("TEST_REF") || "test2"
 
     Rebase.call(GitHub.client(token), org, repo, ref)
   end

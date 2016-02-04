@@ -1,6 +1,7 @@
 defmodule MrRebase.GitHubControllerTest do
   use MrRebase.ConnCase
 
+  @tag :external
   test "POST /github/callback" do
     payload = """
 {

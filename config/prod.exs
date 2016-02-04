@@ -26,6 +26,11 @@ config :mr_rebase, MrRebase.Repo,
 # Do not print debug messages in production
 config :logger, level: :debug
 
+config :phoenix, :filter_parameters, [
+  "password",
+  "code", # used by AuthController
+]
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

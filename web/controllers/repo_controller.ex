@@ -19,7 +19,9 @@ defmodule MrRebase.RepoController do
   end
 
   def rebase(conn, %{"user" => org, "repo" => repo, "ref" => ref}) do
-    github_client(conn) |> Rebase.call(org, repo, ref)
+    client = github_client(conn)
+    url = "https://#{client.auth.access_token}@github.com/#{org}/#{repo}"
+    Rebase.call!(url, ref)
 
     conn
     |> put_flash(:info, "PR was successfully rebased!")

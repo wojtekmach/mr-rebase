@@ -8,9 +8,11 @@ defmodule MrRebase.GitHubController do
     org = params["repository"]["owner"]["name"]
     repo = params["repository"]["name"]
 
+    url = "https://#{client.auth.access_token}@github.com/#{org}/#{repo}"
+
     GitHub.pull_requests(client, org, repo)
     |> Enum.each(fn pr ->
-      Rebase.call(client, org, repo, pr["head"]["ref"])
+      Rebase.call(url, pr["head"]["ref"])
     end)
 
     conn

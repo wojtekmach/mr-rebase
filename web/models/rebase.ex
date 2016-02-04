@@ -1,46 +1,16 @@
 defmodule Rebase do
-  def call(client, org, repo, branch) do
-    url = "https://#{client.auth.access_token}@github.com/#{org}/#{repo}"
+  require Logger
 
-    with_tmpdir!(fn _dirname ->
-      IO.puts "Cloning..."
-      IO.inspect System.cmd("git", ["clone", url, "."])
+  def call!(url, branch) do
+    SystemUtils.with_tmpdir!(fn _dirname ->
+      Git.clone!(url)
+      SystemUtils.cmd!("git config user.email mr-rebase@wojtekmach.pl")
+      SystemUtils.cmd!("git config user.name Mr.Rebase")
 
-      :timer.sleep(1000)
-      IO.inspect System.cmd("git", ["config", "user.email", "mr-rebase@wojtekmach.pl"])
-      IO.inspect System.cmd("git", ["config", "user.name", "Mr. Rebase"])
-
-      :timer.sleep(1000)
-      IO.inspect "On master branch"
-      IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
-
-      :timer.sleep(1000)
-      IO.puts "Switching branch..."
-      IO.inspect System.cmd("git", ["fetch", "origin", branch])
-      IO.inspect System.cmd("git", ["checkout", branch])
-      IO.inspect "On #{branch} branch"
-      IO.inspect System.cmd("git", ["log", "--oneline", "-1"])
-
-      :timer.sleep(1000)
-      IO.puts "Rebasing..."
-      IO.inspect System.cmd("git", ["rebase", "master"])
-
-      :timer.sleep(1000)
-      IO.inspect System.cmd("git", ["log", "--oneline"])
-
-      :timer.sleep(1000)
-      IO.puts "Pushing..."
-      IO.inspect System.cmd("git", ["push", "-f", "origin", branch])
+      Git.fetch!("origin", branch)
+      Git.checkout!(branch)
+      Git.rebase!("origin/master")
+      Git.push_f!("origin", branch)
     end)
-  end
-
-  def with_tmpdir!(f, prefix \\ "") do
-    cwd = System.cwd!
-    dirname = System.tmp_dir! <> "/" <> prefix <> SecureRandom.uuid
-    File.mkdir_p!(dirname)
-    File.cd!(dirname)
-    f.(dirname)
-    File.cd!(cwd)
-    File.rm_rf!(dirname)
   end
 end

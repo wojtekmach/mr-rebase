@@ -7,7 +7,7 @@ config :mr_rebase, MrRebase.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :debug
 
 # Configure your database
 config :mr_rebase, MrRebase.Repo,

@@ -5,10 +5,7 @@ defmodule MrRebase.RepoController do
     access_token = get_session(conn, :access_token)
     user = get_session(conn, :user)
 
-    if access_token do
-      repositories = github_client(conn) |> GitHub.repositories(user.login)
-    end
-
+    repositories = if access_token, do: github_client(conn) |> GitHub.repositories(user.login)
     render conn, "index.html", %{access_token: access_token, repositories: repositories, user: user}
   end
 

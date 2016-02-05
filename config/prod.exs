@@ -31,6 +31,8 @@ config :phoenix, :filter_parameters, [
   "code", # used by AuthController
 ]
 
+config :mr_rebase, :github_api, GitHub
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

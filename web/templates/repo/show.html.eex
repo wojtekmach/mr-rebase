@@ -7,8 +7,8 @@
   <ul>
     <%= for pr <- @prs do %>
       <li>
-        <%= link pr["title"], to: pr["html_url"] %>
-        <%= link "Rebase", to: repo_url(@conn, :rebase, @org, @repo, pr["head"]["ref"]), method: :post, class: "btn btn-default" %>
+        <%= link pr.title, to: pr.url %>
+        <%= link "Rebase", to: repo_url(@conn, :rebase, @org, @repo, pr.branch), method: :post, class: "btn btn-default" %>
       </li>
     <% end %>
   </ul>

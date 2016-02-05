@@ -1,16 +1,18 @@
 defmodule MrRebase.RepoController do
   use MrRebase.Web, :controller
 
+  @github_api Application.get_env(:mr_rebase, :github_api)
+
   def index(conn, _params) do
     access_token = get_session(conn, :access_token)
     user = get_session(conn, :user)
 
-    repositories = if access_token, do: github_client(conn) |> GitHub.repositories(user.login)
+    repositories = if access_token, do: github_client(conn) |> @github_api.repositories(user.login)
     render conn, "index.html", %{access_token: access_token, repositories: repositories, user: user}
   end
 
   def show(conn, %{"user" => org, "repo" => repo}) do
-    prs = github_client(conn) |> GitHub.pull_requests(org, repo)
+    prs = github_client(conn) |> @github_api.pull_requests(org, repo)
 
     render conn, "show.html", %{org: org, repo: repo, prs: prs}
   end

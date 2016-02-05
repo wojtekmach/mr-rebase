@@ -41,3 +41,5 @@ config :mr_rebase, MrRebase.Repo,
   database: "mr_rebase_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :mr_rebase, :github_api, GitHub

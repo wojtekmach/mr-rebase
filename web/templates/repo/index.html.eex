@@ -7,7 +7,7 @@
   <h3>Repositories</h3>
   <ul>
     <%= for repo <- @repositories do %>
-      <li><%= link repo["name"], to: repo_path(@conn, :show, @user.login, repo["name"]) %></li>
+      <li><%= link repo.name, to: repo_path(@conn, :show, @user.login, repo.name) %></li>
     <% end %>
   </ul>
 

@@ -11,8 +11,8 @@ defmodule Git do
   end
 
   def set_user!(name, email) do
-    cmd!("git config user.name Mr.Rebase")
-    cmd!("git config user.email mr-rebase@wojtekmach.pl")
+    cmd!("git config user.name #{name}")
+    cmd!("git config user.email #{email}")
   end
 
   def add!(pathspec) do

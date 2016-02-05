@@ -11,7 +11,7 @@ defmodule RebaseTest do
         Git.clone!("file://#{origin_dirname}")
         Git.set_user!("Mr.Rebase+Test", "mr-rebase+test@wojtekmach.pl")
 
-        touch_file!("a")
+        SystemUtils.cmd!("touch a")
         Git.add!(".")
         Git.commit!("commit-a")
         [{_, "commit-a"}] = Git.log_oneline!
@@ -20,14 +20,14 @@ defmodule RebaseTest do
         Git.branch!("some-feature")
 
         # Create commit on master
-        touch_file!("b")
+        SystemUtils.cmd!("touch b")
         Git.add!(".")
         Git.commit!("commit-b")
         [{_, "commit-b"}, {_, "commit-a"}] = Git.log_oneline!
 
         # Create commit on feature branch
         Git.checkout!("some-feature")
-        touch_file!("c")
+        SystemUtils.cmd!("touch c")
         Git.add!(".")
         Git.commit!("commit-c")
         [{_, "commit-c"}, {_, "commit-a"}] = Git.log_oneline!
@@ -42,9 +42,5 @@ defmodule RebaseTest do
         [{_, "commit-c"}, {_, "commit-b"}, {_, "commit-a"}] = Git.log_oneline!
       end)
     end)
-  end
-
-  defp touch_file!(filename) do
-    {_, 0} = System.cmd("touch", [filename])
   end
 end

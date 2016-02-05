@@ -1,6 +1,6 @@
 defmodule Git do
   require Logger
-  import SystemUtils, only: [cmd: 1, cmd!: 1]
+  import SystemUtils, only: [cmd!: 1]
 
   def init!(dirname) do
     cmd!("git init --bare #{dirname}")
@@ -8,6 +8,11 @@ defmodule Git do
 
   def clone!(url) do
     cmd!("git clone --quiet #{url} .")
+  end
+
+  def set_user!(name, email) do
+    cmd!("git config user.name Mr.Rebase")
+    cmd!("git config user.email mr-rebase@wojtekmach.pl")
   end
 
   def add!(pathspec) do

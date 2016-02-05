@@ -4,9 +4,7 @@ defmodule Rebase do
   def call!(url, branch) do
     SystemUtils.with_tmpdir!(fn _dirname ->
       Git.clone!(url)
-      SystemUtils.cmd!("git config user.email mr-rebase@wojtekmach.pl")
-      SystemUtils.cmd!("git config user.name Mr.Rebase")
-
+      Git.set_user!("Mr.Rebase", "mr-rebase@wojtekmach.pl")
       Git.fetch!("origin", branch)
       Git.checkout!(branch)
       Git.rebase!("origin/master")

@@ -9,6 +9,8 @@ defmodule RebaseTest do
 
       SystemUtils.with_tmpdir!(fn _clone_dirname ->
         Git.clone!("file://#{origin_dirname}")
+        Git.set_user!("Mr.Rebase+Test", "mr-rebase+test@wojtekmach.pl")
+
         touch_file!("a")
         Git.add!(".")
         Git.commit!("commit-a")

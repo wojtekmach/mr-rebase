@@ -1,16 +1,18 @@
 defmodule MrRebase.GitHubController do
   use MrRebase.Web, :controller
 
-  def callback(conn, params) do
-    token = System.get_env("GITHUB_TOKEN") || raise("GITHUB_TOKEN missing")
+  @github_api Application.get_env(:mr_rebase, :github_api)
 
-    client = GitHub.client(token)
+  def callback(conn, params) do
+    token = System.get_env("GITHUB_TOKEN")
+
+    client = @github_api.client(token)
     org = params["repository"]["owner"]["name"]
     repo = params["repository"]["name"]
 
-    url = "https://#{client.auth.access_token}@github.com/#{org}/#{repo}"
+    url = "https://#{token}@github.com/#{org}/#{repo}"
 
-    GitHub.pull_requests(client, org, repo)
+    @github_api.pull_requests(client, org, repo)
     |> Enum.each(fn pr ->
       Rebase.call!(url, pr.branch)
     end)

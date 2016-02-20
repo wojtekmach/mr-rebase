@@ -31,7 +31,7 @@ config :phoenix, :filter_parameters, [
   "code", # used by AuthController
 ]
 
-config :mr_rebase, :github_api, GitHub
+config :mr_rebase, :github_api, GitHub.Real
 
 # ## SSL Support
 #

@@ -18,4 +18,4 @@ config :mr_rebase, MrRebase.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :mr_rebase, :github_api, GitHubFake
+config :mr_rebase, :github_api, GitHub.Fake

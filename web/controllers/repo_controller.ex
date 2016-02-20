@@ -28,6 +28,6 @@ defmodule MrRebase.RepoController do
   end
 
   defp github_client(conn) do
-    get_session(conn, :access_token) |> GitHub.client
+    get_session(conn, :access_token) |> @github_api.client
   end
 end

@@ -1,6 +1,4 @@
 defmodule Rebase do
-  require Logger
-
   def call!(url, branch) do
     SystemUtils.with_tmpdir!(fn _dirname ->
       Git.clone!(url)

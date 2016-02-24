@@ -21,8 +21,7 @@ config :mr_rebase, MrRebase.Repo,
 config :mr_rebase, :github_api, GitHub.Fake
 
 defmodule CustomFormatter do
-  import ExUnit.Formatter, only: [format_time: 2, format_filters: 2, format_test_failure: 5,
-                                  format_test_case_failure: 5]
+  import ExUnit.Formatter, only: [format_time: 2]
 
   defdelegate init(opts), to: ExUnit.CLIFormatter
   defdelegate trace_test_skip(test), to: ExUnit.CLIFormatter
